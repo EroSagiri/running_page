@@ -109,3 +109,12 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           artifact_name: pages-artifact
+
+      - name: Deploy to Cloudflare Workers with Wrangler
+        uses: cloudflare/wrangler-action@v3.1.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./dist --project-name=running-page
+          
+      
